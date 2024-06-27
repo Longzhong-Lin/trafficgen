@@ -1,0 +1,9 @@
+# Config format schema number
+format_version: 4
+device: 'cpu'
+
+data_path: 'data/processed_demo'
+from_metadrive: False
+data_usage: 1
+
+context_num: 1

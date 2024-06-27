@@ -6,7 +6,7 @@ Usage:
 """
 from trafficgen.traffic_generator.traffic_generator import TrafficGen
 from trafficgen.traffic_generator.utils.utils import get_parsed_args
-from trafficgen.utils.config import load_config_init
+from trafficgen.traffic_generator.utils.utils import load_config
 import torch
 # Please keep this line here:
 from trafficgen.utils.typedef import AgentType, RoadLineType, RoadEdgeType
@@ -14,7 +14,7 @@ from trafficgen.utils.typedef import AgentType, RoadLineType, RoadEdgeType
 if __name__ == "__main__":
     args = get_parsed_args()
 
-    cfg = load_config_init(args.config)
+    cfg = load_config(args.config)
 
     if torch.cuda.is_available():
         cfg["device"] = "cuda"

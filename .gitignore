@@ -11,6 +11,8 @@
 **/exps/**
 *.pt
 *cache*
+**egg-info**
+data/
 
 /traffic_generator/ckpt/
 /trafficgen/lightning_logs/

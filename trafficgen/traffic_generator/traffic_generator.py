@@ -25,7 +25,7 @@ class TrafficGen:
         self.cfg = cfg
         self.init_model = initializer.load_from_checkpoint(
             os.path.join(TRAFFICGEN_ROOT, "traffic_generator", "ckpt", "init.ckpt")
-        )
+        ).eval()
         # act = actuator()
         # state = torch.load('traffic_generator/ckpt/act.ckpt', map_location='cpu')
         # act = torch.nn.DataParallel(act, device_ids=[0])
@@ -33,7 +33,10 @@ class TrafficGen:
         # self.act_model = act
         self.act_model = actuator.load_from_checkpoint(
             os.path.join(TRAFFICGEN_ROOT, "traffic_generator", "ckpt", "act.ckpt")
-        )
+        ).eval()
+        if self.cfg['device'] == 'cuda':
+            self.act_model.cuda()
+            self.init_model.cuda()
         init_dataset = InitDataset(cfg)
         self.data_loader = DataLoader(init_dataset, shuffle=False, batch_size=1, num_workers=0)
 
